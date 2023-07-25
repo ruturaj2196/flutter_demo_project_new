@@ -10,7 +10,7 @@ class DateCheck extends StatefulWidget {
 }
 
 class _DateCheckState extends State<DateCheck> {
-  final TextEditingController _fromdateController = TextEditingController();
+  // final TextEditingController _fromdateController = TextEditingController();
   final TextEditingController _todateController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey();
   String fromDate = '';
@@ -25,17 +25,17 @@ class _DateCheckState extends State<DateCheck> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InputField(
-              ontap: () {
-                setState(() {
-                  _fromDate(context);
-                });
-              },
-              obsecureText: false,
-              controller: _fromdateController,
-              hintText: 'yyyy-mm-dd',
-              readOnly: true,
-            ),
+            // InputField(
+            //   ontap: () {
+            //     setState(() {
+            //       _fromDate(context);
+            //     });
+            //   },
+            //   obsecureText: false,
+            //   controller: _fromdateController,
+            //   hintText: 'yyyy-mm-dd',
+            //   readOnly: true,
+            // ),
             InputField(
               ontap: () {
                 setState(() {
@@ -70,26 +70,26 @@ class _DateCheckState extends State<DateCheck> {
   }
 
 // Calendar for from date
-  _fromDate(BuildContext context) async {
-    final now = DateTime.now();
-    final DateTime? fromPicked = await showDatePicker(
-        initialEntryMode: DatePickerEntryMode.calendar,
-        initialDatePickerMode: DatePickerMode.day,
-        context: context,
-        initialDate: DateTime(now.year, now.month, 1),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2200));
+  // _fromDate(BuildContext context) async {
+  //   final now = DateTime.now();
+  //   final DateTime? fromPicked = await showDatePicker(
+  //       initialEntryMode: DatePickerEntryMode.calendar,
+  //       initialDatePickerMode: DatePickerMode.day,
+  //       context: context,
+  //       initialDate: DateTime(now.year, now.month, 1),
+  //       firstDate: DateTime(2000),
+  //       lastDate: DateTime(2200));
 
-    if (fromPicked != null) {
-      debugPrint(fromPicked.toString());
-      setState(() {
-        _fromdateController.text = DateFormat('yyyy-MM-dd').format(fromPicked);
-        fromDate = _fromdateController.text;
-      });
-    } else {
-      debugPrint('not selected..');
-    }
-  }
+  //   if (fromPicked != null) {
+  //     debugPrint(fromPicked.toString());
+  //     setState(() {
+  //       _fromdateController.text = DateFormat('yyyy-MM-dd').format(fromPicked);
+  //       fromDate = _fromdateController.text;
+  //     });
+  //   } else {
+  //     debugPrint('not selected..');
+  //   }
+  // }
 
 // Calendar for to date
   _toDate(BuildContext context) async {
