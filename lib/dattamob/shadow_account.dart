@@ -12,6 +12,9 @@ class ShadowAccount extends StatefulWidget {
 }
 
 class _ShadowAccountState extends State<ShadowAccount> {
+  String accountId = '';
+  String accountName = '';
+  var checkBox1 = false;
   @override
   void initState() {
     try {
@@ -48,33 +51,36 @@ class _ShadowAccountState extends State<ShadowAccount> {
             itemBuilder: (ctx, index) {
               final shadowAc = datalist[index];
               return ListTile(
-                title: Text(shadowAc.name),
+                title: Row(
+                  children: [
+                    Text(shadowAc.name),
+                    FormField(
+                      builder: (state) {
+                        return Checkbox(
+                          splashRadius: 10.0,
+                          value: checkBox1,
+                          onChanged: (value) {
+                            checkBox1 = value!;
+                            state.didChange(value);
+                            if (checkBox1 == true) {
+                              accountName = shadowAc.name;
+                              accountId = shadowAc.id.toString();
+                              debugPrint('accountId = $accountId');
+                              debugPrint('accountName = $accountName');
+                            } else {
+                              debugPrint('please select account name..');
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
               );
             });
       }),
     );
   }
-}
-
-class ShadowAccounts {
-  String id;
-  String name;
-
-  ShadowAccounts({
-    required this.id,
-    required this.name,
-  });
-
-  factory ShadowAccounts.fromJson(Map<String, dynamic> json) => ShadowAccounts(
-        id: json["id"],
-        name: json["name"],
-      );
-}
-
-// to api call
-
-class ApiCall {
-// api call to get the list of customers or suppliers
 
   Future<List<ShadowAccounts>> fetchShadowAccountList() async {
     var url =
@@ -103,8 +109,25 @@ class ApiCall {
   }
 }
 
+class ShadowAccounts {
+  String id;
+  String name;
+
+  ShadowAccounts({
+    required this.id,
+    required this.name,
+  });
+
+  factory ShadowAccounts.fromJson(Map<String, dynamic> json) => ShadowAccounts(
+        id: json["id"],
+        name: json["name"],
+      );
+}
+
+// to api call
+
 class DataProvider extends ChangeNotifier {
-  ApiCall _service = ApiCall();
+  _ShadowAccountState _service = _ShadowAccountState();
   bool isloading = false;
   List<ShadowAccounts> _datalist = [];
   List<ShadowAccounts> get datalist => _datalist;
