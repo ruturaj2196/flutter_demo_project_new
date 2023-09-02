@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/dattamob/shadow_account.dart';
+import 'package:flutter_practice/grocery_store/model/cart_model.dart';
+import 'package:flutter_practice/grocery_store/pages/intro_page.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
@@ -20,14 +21,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (ctx) => DataProvider(),
+          create: (ctx) => CartModel(),
           builder: (context, child) => MaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const ShadowAccount(),
+            home: const IntroPage(),
           ),
         ),
       ],
