@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/grocery_store/model/cart_model.dart';
-import 'package:flutter_practice/grocery_store/pages/intro_page.dart';
+import 'package:flutter_practice/stateManagement/provider/todo_provider.dart';
+import 'package:flutter_practice/stateManagement/ui.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   // initialize hive
+  HttpOverrides.global = MyHttpOverrides();
   await Hive.initFlutter();
   await Hive.openBox("expense_database");
 
@@ -21,17 +24,26 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (ctx) => CartModel(),
+          create: (ctx) => TodoProvider(),
           builder: (context, child) => MaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const IntroPage(),
+            home: const MyProviderApp(),
           ),
         ),
       ],
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

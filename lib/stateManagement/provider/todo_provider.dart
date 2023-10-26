@@ -4,9 +4,9 @@ import 'package:flutter_practice/stateManagement/todo.dart';
 
 class TodoProvider extends ChangeNotifier {
   bool isLoading = false;
-  TodoService _service = TodoService();
-  List<Todo> _todos = [];
-  List<Todo> get todos => _todos;
+  final TodoService _service = TodoService();
+  List<Subscribers> _todos = [];
+  List<Subscribers> get todos => _todos;
 
   Future<void> getAllTodos() async {
     isLoading = true;
@@ -15,6 +15,6 @@ class TodoProvider extends ChangeNotifier {
     _todos = response;
 
     isLoading = false;
-    notifyListeners(); 
+    notifyListeners();
   }
 }
