@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/stateManagement/provider/todo_provider.dart';
-import 'package:flutter_practice/stateManagement/ui.dart';
+import 'package:flutter_practice/provider_for_adv_account/adv_acc_provider.dart';
+import 'package:flutter_practice/provider_for_adv_account/adv_acc_ui.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
@@ -23,15 +23,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // ChangeNotifierProvider(
+        //   create: (ctx) => TodoProvider(),
+        //   builder: (context, child) => MaterialApp(
+        //     title: 'Flutter Demo',
+        //     debugShowCheckedModeBanner: false,
+        //     theme: ThemeData(
+        //       primarySwatch: Colors.blue,
+        //     ),
+        //     home: const MyProviderApp(),
+        //   ),
+        // ),
         ChangeNotifierProvider(
-          create: (ctx) => TodoProvider(),
+          create: (ctx) => AdvAccProvider(),
           builder: (context, child) => MaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const MyProviderApp(),
+            home: const AdvAccount(),
           ),
         ),
       ],
