@@ -1,4 +1,3 @@
-
 class Subscribers {
   int? id;
   String? emailaddress;
@@ -13,4 +12,3 @@ class Subscribers {
         emailaddress: json["emailaddress"],
       );
 }
-

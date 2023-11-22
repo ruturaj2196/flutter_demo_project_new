@@ -1,8 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/stateManagement/provider/todo_provider.dart';
-import 'package:flutter_practice/stateManagement/services/todo_services.dart';
-import 'package:flutter_practice/stateManagement/todo.dart';
+import 'package:flutter_practice/stateManagement/class.dart';
 
 import 'package:provider/provider.dart';
 
@@ -69,93 +68,7 @@ class _MyProviderAppState extends State<MyProviderApp> {
               height: 10,
             ),
             ElevatedButton(
-              onPressed: () {
-                customAlertDailog(
-                  context,
-                  'Add new subscriber.',
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          constraints: const BoxConstraints(
-                            maxHeight: 50,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: 'Id',
-                          hintStyle: const TextStyle(fontSize: 13),
-                        ),
-                        controller: _idController,
-                        readOnly: false,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          constraints: const BoxConstraints(
-                            maxHeight: 50,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: 'E-mail',
-                          hintStyle: const TextStyle(fontSize: 13),
-                        ),
-                        controller: _emailController,
-                        readOnly: false,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          constraints: const BoxConstraints(
-                            maxHeight: 50,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: '+91',
-                          hintStyle: const TextStyle(fontSize: 13),
-                        ),
-                        controller: _phoneController,
-                        readOnly: false,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter a phone number';
-                          }
-                          if (value.contains(RegExp(r'[^\d]'))) {
-                            return 'Invalid phone number';
-                          }
-                          return null; // Return null if the input is valid.
-                        },
-                      ),
-                    ],
-                  ),
-                  () {
-                    int id = int.parse(_idController.text);
-                    int phoneNo = int.parse(_phoneController.text);
-                    String email = _emailController.text;
-                    setState(() {
-                      TodoService().postIntoSubscriberTableData(
-                        context,
-                        id,
-                        email,
-                        phoneNo,
-                      );
-                      clearText();
-                      Navigator.pop(context);
-                    });
-                  },
-                  'Save',
-                );
-              },
+              onPressed: () {},
               child: const Text('Add new subscriber'),
             ),
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/stateManagement/services/todo_services.dart';
-import 'package:flutter_practice/stateManagement/todo.dart';
+import 'package:flutter_practice/stateManagement/class.dart';
 
 class TodoProvider extends ChangeNotifier {
   bool isLoading = false;
@@ -17,4 +17,10 @@ class TodoProvider extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+
+  // Future<void> postData() async {
+  //   final response = await _service.postIntoSubscriberTableData(
+  //       subscriberId, emailAddress, mobileNumber);
+  //         notifyListeners();
+  // }
 }

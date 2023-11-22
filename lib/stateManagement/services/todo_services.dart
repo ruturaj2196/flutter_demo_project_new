@@ -1,13 +1,12 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_practice/stateManagement/todo.dart';
+import 'package:flutter_practice/stateManagement/class.dart';
 import 'package:http/http.dart' as http;
 
 class TodoService {
   Future<List<Subscribers>> getAll() async {
     try {
-      const url = "https://192.168.1.38:8081/message/subscriber/subscriberdd";
+      const url =
+          "https://erpx.datta-india.co.in:8081/message/subscriber/subscriberdd";
       final uri = Uri.parse(url);
       final response = await http.get(headers: {
         "Authorization":
@@ -30,15 +29,14 @@ class TodoService {
     }
   }
 
-  Future postIntoSubscriberTableData(
-    BuildContext context,
+  /*Future postIntoSubscriberTableData(
     int subscriberId,
     String emailAddress,
     int mobileNumber,
   ) async {
     try {
       var url = Uri.parse(
-        "https://192.168.1.38:8081/message/subscriber/add-subscriber",
+        "https://erpx.datta-india.co.in:8081/message/subscriber/add-subscriber",
       );
       debugPrint(
           "$subscriberId,$emailAddress,$mobileNumber, .........................this the data.");
@@ -67,5 +65,5 @@ class TodoService {
     } catch (e) {
       debugPrint(e.toString());
     }
-  }
+  }*/
 }
